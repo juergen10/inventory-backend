@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthLoginRequest;
+use App\Http\Traits\Response;
 
 class AuthController extends Controller
 {
+    use Response;
     public function login(AuthLoginRequest $request)
     {
         $data = [
@@ -16,23 +18,16 @@ class AuthController extends Controller
 
         if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('sp##d$erviceTok3n')->accessToken;
-            return response()->json([
-                'data' => [
-                    'token' => $token
-                ]
-            ], 200);
+
+            return $this->response('success', $token);
         }
 
-        return response()->json([
-            'errors' => ['unknown_account']
-        ], 400);
+        return $this->response('fail', null, 'unknown_account', 400);
 
     }
 
     public function me()
     {
-        return response()->json([
-            'data' => auth()->user()
-        ], 200);
+        return $this->response('success', auth()->user());
     }
 }
