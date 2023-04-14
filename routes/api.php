@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\VariantController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +22,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
     Route::get('variants', [VariantController::class, 'index']);
     Route::get('variants/{uuid}', [VariantController::class, 'getByUuid']);
+    Route::get('customers', [CustomerController::class, 'index']);
+    Route::post('customers', [CustomerController::class, 'store']);
+    Route::get('customers/{uuid}', [CustomerController::class, 'getByUuid']);
+    Route::post('customers/{uuid}', [CustomerController::class, 'update']);
+    Route::delete('customers/{uuid}', [CustomerController::class, 'delete']);
 });
