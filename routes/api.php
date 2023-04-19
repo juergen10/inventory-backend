@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\OptionController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\VariantController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +22,16 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
+
+    Route::get('products', [ProductController::class, 'index']);
+    Route::get('products/{uuid}', [ProductController::class, 'getByUuid']);
+
     Route::get('variants', [VariantController::class, 'index']);
     Route::get('variants/{uuid}', [VariantController::class, 'getByUuid']);
-    Route::get('customers', [CustomerController::class, 'index']);
+    
     Route::get('options', [OptionController::class, 'index']);
+    
+    Route::get('customers', [CustomerController::class, 'index']);
     Route::post('customers', [CustomerController::class, 'store']);
     Route::get('customers/{uuid}', [CustomerController::class, 'getByUuid']);
     Route::post('customers/{uuid}', [CustomerController::class, 'update']);
