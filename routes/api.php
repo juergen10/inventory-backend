@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:api')->prefix('auth')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
 
     Route::get('products', [ProductController::class, 'index']);
@@ -28,9 +28,9 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('variants', [VariantController::class, 'index']);
     Route::get('variants/{uuid}', [VariantController::class, 'getByUuid']);
-    
+
     Route::get('options', [OptionController::class, 'index']);
-    
+
     Route::get('customers', [CustomerController::class, 'index']);
     Route::post('customers', [CustomerController::class, 'store']);
     Route::get('customers/{uuid}', [CustomerController::class, 'getByUuid']);

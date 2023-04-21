@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search', null);
-        $limit = $request->input('limit', 10);
+        $limit = $request->input('perPage', 10);
         $order = $request->input('order', 'desc');
 
         $products = Product::with('variants', 'variants.images', 'variants.option')
