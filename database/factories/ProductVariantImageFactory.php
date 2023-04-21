@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ProductVariantImage>
  */
-class VariantFactory extends Factory
+class ProductVariantImageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,6 +19,7 @@ class VariantFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'product_variant_uuid' => (string) Str::orderedUuid(),
         ];
     }
 }
