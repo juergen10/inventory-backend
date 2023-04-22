@@ -80,6 +80,7 @@ class CustomerController extends Controller
 
         return $this->response('success', $customer);
     }
+    
     public function delete(string $uuid)
     {
         $customer = Customer::where('uuid', $uuid)->first();

@@ -13,7 +13,7 @@ class VariantController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search', null);
-        $limit = $request->input('limit', 10);
+        $limit = $request->input('perPage', 10);
 
         $variants = Variant::select('uuid', 'name')
             ->where('name', 'like', '%' . $search . '%')
@@ -26,6 +26,10 @@ class VariantController extends Controller
     {
         $variant = Variant::select('uuid', 'name')
             ->where('uuid', $uuid)->first();
+
+        if (null == $variant) {
+            return $this->response('fail', null, 'resource_not_found', 400);
+        }
 
         return $this->response('success', $variant);
     }
