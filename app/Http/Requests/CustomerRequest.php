@@ -37,7 +37,7 @@ class CustomerRequest extends FormRequest
     {
         $response = new JsonResponse([
             'errors' => $validator->errors()->all(),
-        ], 400);
+        ], 422);
 
         throw new ValidationException($validator, $response);
     }

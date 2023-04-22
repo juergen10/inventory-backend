@@ -8,7 +8,7 @@ class Product extends Swagger
 {
     /**
      * @OA\Get(
-     *    path="/api/products",
+     *    path="/api/auth/products",
      *    tags={"Product"},
      *    summary="Get list all product",
      *    security={{"passport":{}}},
@@ -52,10 +52,10 @@ class Product extends Swagger
      *              "status": "success",
      *              "data": {
      *              "current_page": 1,
-     *              "first_page_url": "http://localhost:8080/api/products?page=1",
+     *              "first_page_url": "http://localhost:8080/api/auth/products?page=1",
      *              "from": 1,
      *              "last_page": 1,
-     *              "last_page_url": "http://localhost:8080/api/products?page=1",
+     *              "last_page_url": "http://localhost:8080/api/auth/products?page=1",
      *              "links": {
      *                      {
      *                          "url": null,
@@ -63,7 +63,7 @@ class Product extends Swagger
      *                          "active": false
      *                      },
      *                      {
-     *                          "url": "http://localhost:8080/api/products?page=1",
+     *                          "url": "http://localhost:8080/api/auth/products?page=1",
      *                          "label": "1",
      *                          "active": true
      *                      },
@@ -74,7 +74,7 @@ class Product extends Swagger
      *                      }
      *                  },
      *              "next_page_url": null,
-     *              "path": "http://localhost:8080/api/products",
+     *              "path": "http://localhost:8080/api/auth/products",
      *              "per_page": 10,
      *              "prev_page_url": null,
      *              "to": 1,
@@ -329,6 +329,16 @@ class Product extends Swagger
      *           example={
      *               "status": "fail",
      *               "message": "unauthorized",
+     *           }
+     *       ),
+     *     ),
+     *     @OA\Response(
+     *       response=400,
+     *       description="Resource Not Found",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "resource_not_found",
      *           }
      *       ),
      *     ),

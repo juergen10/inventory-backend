@@ -19,7 +19,7 @@ class AuthController extends Controller
         if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('sp##d$erviceTok3n')->accessToken;
 
-            return $this->response('success', $token);
+            return $this->response('success', ['token' => $token]);
         }
 
         return $this->response('fail', null, 'unknown_account', 400);
