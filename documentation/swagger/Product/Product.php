@@ -347,4 +347,65 @@ class Product extends Swagger
     public function getByUuid()
     {
     }
+
+    /**
+     * @OA\Post (
+     *      path="/api/auth/products/image/upload",
+     *      tags={"Product"},
+     *      summary="Upload Product Image",
+     *      security={{"passport":{}}},
+     *      @OA\RequestBody(
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(
+     *                      type="file",
+     *                      property="image"
+     *                  )
+     *              )
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *          @OA\JsonContent(
+     *              type="object",
+     *              example={
+     *                  "status": "success",
+     *                  "data": {
+     *                      "filename": "99045e3c-5f5b-4b40-bf45-4a1e5376d8f7-1682440399.png",
+     *                      "url": "http://localhost:8080/images/products/99045e3c-5f5b-4b40-bf45-4a1e5376d8f7-1682440399.png"
+     *                  }
+     *              }
+     *          )
+     *      ),
+     *     @OA\Response(
+     *       response=401,
+     *       description="Unauthorized",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "unauthorized",
+     *           }
+     *       ),
+     *     ),
+     *    @OA\Response(
+     *       response=422,
+     *       description="Unprocessable content",
+     *       @OA\JsonContent(
+     *           example={
+     *               "errors": {
+     *                  "The image field is required.",
+     *                  "The image field must be an image.",
+     *                  "The image field must be a file of type: jpeg, png, jpg."
+     *               }
+     *           }
+     *       ),
+     *     ),
+     * )
+     */
+    public function uploadImage()
+    {
+        # code...
+    }
 }

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ImageUploadRequest;
 use App\Http\Traits\Response;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -35,5 +38,20 @@ class ProductController extends Controller
         }
 
         return $this->response('success', $product);
+    }
+
+    public function uploadImage(ImageUploadRequest $request)
+    {
+        $extensionFile = $request->file('image')->getClientOriginalExtension();
+        $filename = (string) Str::orderedUuid() . '-' . time() . '.' . $extensionFile;
+
+        $saveFile = $request->file('image')->storeAs('images/products', $filename);
+
+        $data = [
+            'filename' => $filename,
+            'url' => config('app.url') . '/' . $saveFile
+        ];
+
+        return $this->response('success', $data);
     }
 }
