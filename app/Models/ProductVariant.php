@@ -10,6 +10,15 @@ class ProductVariant extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'product_uuid',
+        'variant_uuid',
+        'sku',
+        'price',
+        'stock',
+        'weight'
+    ];
+
     protected static function boot()
     {
         parent::boot();

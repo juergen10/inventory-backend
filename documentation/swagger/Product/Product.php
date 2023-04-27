@@ -408,4 +408,128 @@ class Product extends Swagger
     {
         # code...
     }
+
+
+    /**
+     * @OA\Post(
+     *    path="/api/auth/products/",
+     *    tags={"Product"},
+     *    summary="Store Data Product",
+     *    security={{"passport":{}}},
+     *     @OA\RequestBody(
+     *      @OA\JsonContent(
+     *        example={
+     *          "name":"Product 2",
+     *          "description":"description",
+     *          "variants":{
+     *              {
+     *                  "price": 10000,
+     *                  "sku": "sku13ss23",
+     *                  "stock": 10,
+     *                  "weight": 10,
+     *                  "variant_uuid": "00fe4393-b2ba-4f85-8aed-e283ae8f1ab1",
+     *                  "option_uuid": "98f75609-49e0-4677-8bbf-1b4dddc5d62f",
+     *                  "images": {
+     *                      "image-1.jpg",
+     *                      "image-2.jpg",
+     *                      "image-3.jpg",
+     *                      "image-4.jpg",
+     *                      "image-5.jpg",
+     *                  }
+     *              },
+     *          }
+     *        },
+     *      ),
+     *      @OA\Schema(
+     *          type="object",
+     *          required={"name",
+     *                    "description",
+     *                    "variants"
+     *                  },
+     *          @OA\Property(property="name", type="string"),
+     *          @OA\Property(property="description", type="string"),
+     *          @OA\Property(property="variants", type="array")
+     *      ),
+     *    ),
+     *    @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\JsonContent(
+     *         example={
+     *           "status": "success",
+     *            "data": {
+     *                  "uuid": "9908568a-b4bd-481c-a85a-8a901bdbc2d7",
+     *                  "name": "Product 2",
+     *                  "description": "description",
+     *                  "created_at": "2023-04-27T15:55:07.000000Z",
+     *                  "updated_at": "2023-04-27T15:55:07.000000Z",
+     *                  "variants": {
+     *                      "id": 6,
+     *                      "uuid": "9908568a-b5c3-4f98-a45e-e6c5b1de33e6",
+     *                      "product_uuid": "9908568a-b4bd-481c-a85a-8a901bdbc2d7",
+     *                      "variant_uuid": "00fe4393-b2ba-4f85-8aed-e283ae8f1ab1",
+     *                      "sku": "sku13ss23",
+     *                      "price": 10000,
+     *                      "stock": 10,
+     *                      "weight": 10,
+     *                      "created_at": "2023-04-27T15:55:07.000000Z",
+     *                      "updated_at": "2023-04-27T15:55:07.000000Z",
+     *                      "images": {
+     *                          {
+     *                          "id": 12,
+     *                          "product_variant_uuid": "9908568a-b5c3-4f98-a45e-e6c5b1de33e6",
+     *                          "name": "image-1.jpg",
+     *                          "is_primary": 1,
+     *                          "created_at": "2023-04-27T15:55:07.000000Z",
+     *                          "updated_at": "2023-04-27T15:55:07.000000Z",
+     *                          "imageUrl": "http://localhost:8080/products/image-1.jpg"
+     *                          },
+     *                          {
+     *                          "id": 13,
+     *                          "product_variant_uuid": "9908568a-b5c3-4f98-a45e-e6c5b1de33e6",
+     *                          "name": "image-2.jpg",
+     *                          "is_primary": 1,
+     *                          "created_at": "2023-04-27T15:55:07.000000Z",
+     *                          "updated_at": "2023-04-27T15:55:07.000000Z",
+     *                          "imageUrl": "http://localhost:8080/products/image-2.jpg"
+     *                          },
+     *                      }
+     *                  }
+     *              }
+     *          }
+     *      ),
+     *   ),
+     *     @OA\Response(
+     *       response=401,
+     *       description="Unauthorized",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "unauthorized",
+     *           }
+     *       ),
+     *     ),
+     *    @OA\Response(
+     *       response=422,
+     *       description="Unprocessable content",
+     *       @OA\JsonContent(
+     *           example={
+     *               "errors": {
+     *                  "The name field is required.",
+     *                  "The description field is required.",
+     *                  "The variants field is required.",
+     *                  "The variants.0.sku has already been taken.",
+     *                  "The variants.0.images field must not have more than 5 items.",
+     *                  "The selected variants.1.variant_uuid is invalid.",
+     *                  "The variants.0.sku field has a duplicate value.",
+     *               }
+     *           }
+     *       ),
+     *     ),
+     * ),
+     */
+    public function store()
+    {
+        # code...
+    }
 }

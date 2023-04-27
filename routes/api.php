@@ -24,6 +24,7 @@ Route::middleware('auth:api')->prefix('auth')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
 
     Route::get('products', [ProductController::class, 'index']);
+    Route::post('products', [ProductController::class, 'store']);
     Route::get('products/{uuid}', [ProductController::class, 'getByUuid']);
     Route::post('products/image/upload', [ProductController::class, 'uploadImage']);
 
