@@ -13,6 +13,12 @@ class OptionSeeder extends Seeder
      */
     public function run(): void
     {
-        Option::factory(2)->create();
+        Option::factory()->create([
+            'name' => 'Botol',
+        ]);
+        
+        Option::factory()->create([
+            'name' => 'Drum',
+        ]);
     }
 }

@@ -13,6 +13,8 @@ class VariantSeeder extends Seeder
      */
     public function run(): void
     {
-        Variant::factory(5)->create();
+        Variant::factory()->create([
+            'name' => "Ukuran"
+        ]);
     }
 }
