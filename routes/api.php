@@ -22,6 +22,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth:api')->prefix('auth')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
+    Route::post('sku/check', [ProductController::class, 'checkSKU']);
 
     Route::get('products', [ProductController::class, 'index']);
     Route::post('products', [ProductController::class, 'store']);

@@ -532,4 +532,59 @@ class Product extends Swagger
     {
         # code...
     }
+
+    /**
+     * @OA\Post(
+     *    path="/api/auth/sku/check",
+     *    tags={"Product"},
+     *    summary="Check SKU Product",
+     *    security={{"passport":{}}},
+     *     @OA\RequestBody(
+     *      @OA\JsonContent(
+     *        example={
+     *          "sku":"Product2",
+     *          "product_uuid":"98f7837c-8b52-4cb8-a0bb-7d1f9610ee64",
+     *        },
+     *      ),
+     *      @OA\Schema(
+     *          type="object",
+     *          required={"sku"},
+     *          @OA\Property(property="sku", type="string")
+     *      ),
+     *    ),
+     *   @OA\Response(
+     *      response=200,
+     *      description="Success",
+     *      @OA\JsonContent(
+     *         example={
+     *           "status": "success",
+     *          }
+     *      ),
+     *   ),
+     *     @OA\Response(
+     *       response=401,
+     *       description="Unauthorized",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "unauthorized",
+     *           }
+     *       ),
+     *     ),
+     *     @OA\Response(
+     *       response=400,
+     *       description="Resource Not Found",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "sku_exist",
+     *           }
+     *       ),
+     *     ),
+     * ),
+     */
+    public function checkSKU()
+    {
+        # code...
+    }
 }
