@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CheckSKURequest;
 use App\Http\Requests\ImageUploadRequest;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Http\Traits\Response;
 use App\Models\Product;
 use App\Models\ProductVariant;
@@ -110,5 +112,27 @@ class ProductController extends Controller
             return $this->response('success', null, $th->getMessage(), 400);
         }
 
+    }
+
+    public function checkSKU(CheckSKURequest $request)
+    {
+        $sku = ProductVariant::where('sku', $request->sku)->first();
+
+        if (null == $sku) {
+            return $this->response('success');
+        }
+
+        if ($request->product_uuid == $sku->product_uuid) {
+            return $this->response('success');
+        }
+
+        return $this->response('fail', null, 'sku_exist', 400);
+    }
+
+    public function update(UpdateProductRequest $request, string $uuid)
+    {
+        // if (condition) {
+        //     # code...
+        // }
     }
 }
