@@ -135,4 +135,30 @@ class ProductController extends Controller
         //     # code...
         // }
     }
+
+    public function removeVariant(string $uuid)
+    {
+        $productVariant = ProductVariant::where('uuid', $uuid)->first();
+
+        if (null == $productVariant) {
+            return $this->response('fail', null, 'resource_not_found', 400);
+        }
+
+        $productVariant->delete();
+
+        return $this->response('success', null, null, 204);
+    }
+
+    public function removeProduct(string $uuid)
+    {
+        $product = Product::where('uuid', $uuid)->first();
+
+        if (null == $product) {
+            return $this->response('fail', null, 'resource_not_found', 400);
+        }
+
+        $product->delete();
+
+        return $this->response('success', null, null, 204);
+    }
 }
