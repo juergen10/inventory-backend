@@ -587,4 +587,93 @@ class Product extends Swagger
     {
         # code...
     }
+
+    /**
+     * @OA\Delete(
+     *    path="/api/auth/products/{uuid}",
+     *    tags={"Product"},
+     *    summary="Delete Product",
+     *    security={{"passport":{}}},
+     *   @OA\Parameter(
+     *      name="uuid",
+     *      in="path",
+     *      @OA\Schema(
+     *          type="string",
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=204,
+     *      description="Success",
+     *   ),
+     *     @OA\Response(
+     *       response=401,
+     *       description="Unauthorized",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "unauthorized",
+     *           }
+     *       ),
+     *     ),
+     *     @OA\Response(
+     *       response=400,
+     *       description="Resource Not Found",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "resource_not_found",
+     *           }
+     *       ),
+     *     ),
+     * ),
+     */
+    public function removeProduct()
+    {
+        # code...
+    }
+
+    /**
+     * @OA\Delete(
+     *    path="/api/auth/products/variants/{uuid}",
+     *    tags={"Product"},
+     *    summary="Delete Product Variant",
+     *    security={{"passport":{}}},
+     *   @OA\Parameter(
+     *      name="uuid",
+     *      in="path",
+     *      @OA\Schema(
+     *          type="string",
+     *      ),
+     *   ),
+     *   @OA\Response(
+     *      response=204,
+     *      description="Success",
+     *   ),
+     *     @OA\Response(
+     *       response=401,
+     *       description="Unauthorized",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "unauthorized",
+     *           }
+     *       ),
+     *     ),
+     *     @OA\Response(
+     *       response=400,
+     *       description="Resource Not Found",
+     *       @OA\JsonContent(
+     *           example={
+     *               "status": "fail",
+     *               "message": "resource_not_found",
+     *           }
+     *       ),
+     *     ),
+     * ),
+     */
+
+    public function removeVariant()
+    {
+        # code...
+    }
 }
