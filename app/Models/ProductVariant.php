@@ -17,7 +17,8 @@ class ProductVariant extends Model
         'sku',
         'price',
         'stock',
-        'weight'
+        'weight',
+        'fund'
     ];
 
     protected static function boot()

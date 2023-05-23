@@ -81,6 +81,7 @@ class ProductController extends Controller
                 $productVariant->weight = $variant['weight'];
                 $productVariant->stock = $variant['stock'];
                 $productVariant->price = $variant['price'];
+                $productVariant->fund = $variant['fund'];
                 $productVariant->save();
 
                 // 2. Insert product variant option
@@ -109,7 +110,7 @@ class ProductController extends Controller
             return $this->response('success', $product);
         } catch (\Throwable $th) {
             DB::rollBack();
-            return $this->response('success', null, $th->getMessage(), 400);
+            return $this->response('fail', null, $th->getMessage(), 400);
         }
 
     }
@@ -131,9 +132,30 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, string $uuid)
     {
-        // if (condition) {
-        //     # code...
-        // }
+
+        DB::beginTransaction();
+        try {
+            $product = Product::where('uuid', $uuid)->first();
+
+            if (null == $product) {
+                return $this->response('fail', null, 'resource_not_found', 400);
+            }
+
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->save();
+
+            DB::commit();
+
+            $product = Product::with('variants', 'variants.images', 'variants.option')
+                ->where('uuid', $uuid)
+                ->first();
+
+            return $this->response('success', $product);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $this->response('fail', null, $th->getMessage(), 400);
+        }
     }
 
     public function removeVariant(string $uuid)

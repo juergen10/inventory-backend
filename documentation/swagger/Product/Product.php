@@ -93,6 +93,7 @@ class Product extends Swagger
      *                          "variant_uuid": "98f7837c-8e3e-4c17-be35-3393b55fe17a",
      *                          "sku": "sku 123",
      *                          "price": 1000,
+     *                          "fund": 1001,
      *                          "stock": 10,
      *                          "weight": 10,
      *                          "created_at": "2023-04-19T07:11:43.000000Z",
@@ -168,6 +169,7 @@ class Product extends Swagger
      *                          "variant_uuid": "98f7837c-8e3e-4c17-be35-3393b55fe17a",
      *                          "sku": "sku 123",
      *                          "price": 1000,
+     *                          "fund": 10001,
      *                          "stock": 10,
      *                          "weight": 10,
      *                          "created_at": "2023-04-19T07:11:43.000000Z",
@@ -286,6 +288,7 @@ class Product extends Swagger
      *                          "price": 1000,
      *                          "stock": 10,
      *                          "weight": 10,
+     *                          "fund": 10001,
      *                          "created_at": "2023-04-19T07:11:43.000000Z",
      *                          "updated_at": "2023-04-19T07:11:43.000000Z",
      *                          "images": {
@@ -427,6 +430,7 @@ class Product extends Swagger
      *                  "sku": "sku13ss23",
      *                  "stock": 10,
      *                  "weight": 10,
+     *                  "fund": 10001,
      *                  "variant_uuid": "00fe4393-b2ba-4f85-8aed-e283ae8f1ab1",
      *                  "option_uuid": "98f75609-49e0-4677-8bbf-1b4dddc5d62f",
      *                  "images": {
@@ -470,6 +474,7 @@ class Product extends Swagger
      *                      "variant_uuid": "00fe4393-b2ba-4f85-8aed-e283ae8f1ab1",
      *                      "sku": "sku13ss23",
      *                      "price": 10000,
+     *                      "fund": 10001,
      *                      "stock": 10,
      *                      "weight": 10,
      *                      "created_at": "2023-04-27T15:55:07.000000Z",
@@ -522,6 +527,7 @@ class Product extends Swagger
      *                  "The variants.0.images field must not have more than 5 items.",
      *                  "The selected variants.1.variant_uuid is invalid.",
      *                  "The variants.0.sku field has a duplicate value.",
+     *                  "The variants.0.price field must be greater than fund."
      *               }
      *           }
      *       ),
