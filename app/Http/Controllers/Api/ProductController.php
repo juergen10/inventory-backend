@@ -145,6 +145,75 @@ class ProductController extends Controller
             $product->description = $request->description;
             $product->save();
 
+            $productVariant = null;
+            $productVariantImage = null;
+
+            foreach ($request->variants as $variant) {
+                // 1. update or create product variant
+                if (isset($variant['uuid'])) {
+                    $productVariant = ProductVariant::where('uuid', $variant['uuid'])->first();
+
+                    if (null == $productVariant) {
+                        continue;
+                    }
+
+                    $productVariant->variant_uuid = $variant['variant_uuid'];
+                    $productVariant->sku = $variant['sku'];
+                    $productVariant->weight = $variant['weight'];
+                    $productVariant->stock = $variant['stock'];
+                    $productVariant->price = $variant['price'];
+                    $productVariant->fund = $variant['fund'];
+                    $productVariant->save();
+
+                } else {
+                    $productVariant = new ProductVariant;
+                    $productVariant->product_uuid = $product->uuid;
+                    $productVariant->variant_uuid = $variant['variant_uuid'];
+                    $productVariant->sku = $variant['sku'];
+                    $productVariant->weight = $variant['weight'];
+                    $productVariant->stock = $variant['stock'];
+                    $productVariant->price = $variant['price'];
+                    $productVariant->fund = $variant['fund'];
+                    $productVariant->save();
+                }
+                // 2. update or create product variant option
+                $productVariantOption = ProductVariantOption::where('product_variant_uuid', $productVariant->uuid)
+                    ->where('option_uuid', $variant['option_uuid'])->first();
+
+                if (null == $productVariantOption) {
+                    $productVariantOption = new ProductVariantOption;
+                    $productVariantOption->product_variant_uuid = $productVariant->uuid;
+                    $productVariantOption->option_uuid = $variant['option_uuid'];
+                    $productVariantOption->save();
+
+                    ProductVariantOption::where('product_variant_uuid', $productVariant->uuid)
+                        ->where('option_uuid', '!=', $variant['option_uuid'])->delete();
+                }
+
+                // 3. update or create image
+
+                foreach ($variant['images'] as $image) {
+                    $productVariantImage = ProductVariantImage::where('name', $image)->first();
+
+                    if (null == $productVariantImage) {
+                        $productVariantImage = new ProductVariantImage;
+                        $productVariantImage->product_variant_uuid = $productVariant->uuid;
+                        $productVariantImage->name = $image;
+                        $productVariantImage->save();
+                    } else {
+                        continue;
+                    }
+                }
+            }
+
+            if ($request->has('deleted_variant')) {
+                $deleteProductVariant = ProductVariant::whereIn('uuid', $request->deleted_variant)->delete();
+            }
+
+            if ($request->has('deleted_image')) {
+                $deleteImage = ProductVariantImage::whereIn('name', $request->deleted_image)->delete();
+            }
+
             DB::commit();
 
             $product = Product::with('variants', 'variants.images', 'variants.option')

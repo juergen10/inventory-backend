@@ -19,6 +19,6 @@ class ProductVariantImage extends Model
     public function getImageUrlAttribute()
     {
         $base = config('app.url');
-        return $base . '/products/' . $this->name;
+        return $base . 'images/products/' . $this->name;
     }
 }
