@@ -27,6 +27,7 @@ Route::middleware('auth:api')->prefix('auth')->group(function () {
     Route::get('products', [ProductController::class, 'index']);
     Route::post('products', [ProductController::class, 'store']);
     Route::get('products/{uuid}', [ProductController::class, 'getByUuid']);
+    Route::post('products/{uuid}', [ProductController::class, 'update']);
     Route::delete('products/{uuid}', [ProductController::class, 'removeProduct']);
     Route::post('products/image/upload', [ProductController::class, 'uploadImage']);
     Route::delete('products/variants/{uuid}', [ProductController::class, 'removeVariant']);
