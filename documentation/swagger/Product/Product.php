@@ -711,12 +711,12 @@ class Product extends Swagger
      *                      "image-5.jpg",
      *                  }
      *              },
+     *              },
      *          "deleted_image": {
      *              "aaa.png"
      *              },
      *          "deleted_variant": {
      *              "98f75609-49e0-4677-8bbf-1b4dddc5d62f"
-     *              }
      *          }
      *        },
      *      ),
